@@ -21,6 +21,10 @@ const stakeSchema = mongoose.Schema(
           type: Number,
           required: true
         },
+        duration: {
+          type: Number,
+          required: true
+        },
         is_active: {
           type: Boolean,
           default: true,
