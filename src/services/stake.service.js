@@ -15,8 +15,11 @@ const createUser = async (stakingBody) => {
     if (!stakingBody.email) {
       reject(new ApiError(httpStatus.BAD_REQUEST, 'Email is required'));
     }
-    if (stakingBody.amount <= 10) { 
-      reject(new ApiError(httpStatus.BAD_REQUEST, 'Amount must be greater than 10'));
+    console.log(stakingBody.amount);
+    console.log(parseInt(stakingBody.amount));
+    console.log(parseInt(stakingBody.amount) < 10);
+    if (parseInt(stakingBody.amount) < 10) { 
+      reject(new ApiError(httpStatus.BAD_REQUEST, 'Amount must be equal or greater than 10'));
     }
     axios.get('https://dev.gulfex.io/api/v2/user', {
       headers: {
@@ -27,13 +30,16 @@ const createUser = async (stakingBody) => {
       console.log(result.data.balance.gulf_available <= stakingBody.amount)
       if(result.data.balance.gulf_available <= stakingBody.amount) {
         console.log('available balance');
+        console.log(`${stakingBody.duration}`);
+        console.log(typeof `${stakingBody.duration}`);
+        console.log(stakingBody);
         Stake.create({
           email: result.data.email,
           stakes: [
             {
               amount: stakingBody.amount,
               is_active: true,
-              duration: stakingBody.duration,
+              duration: `${stakingBody.duration}`,
               // is_paid: false,
               // is_withdrawn: false,
               // is_expired: false,

@@ -10,7 +10,7 @@ branches:
 env:
   global:
     - PORT=8080
-    - MONGODB_URL=mongodb://localhost:27017/node-boilerplate
+    - MONGODB_URL=mongodb://admin:jH0NzbfJNtxAsD7E@SG-gulf-staking-55004.servers.mongodirector.com:27017/staking
     - JWT_SECRET=thisisasamplesecret
     - JWT_ACCESS_EXPIRATION_MINUTES=30
     - JWT_REFRESH_EXPIRATION_DAYS=30
